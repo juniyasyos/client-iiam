@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SsoController;
+use App\Http\Controllers\IamTestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ Route::middleware(['web'])->group(function () {
     Route::view('/status', 'auth-status')->name('status');
 
     // Debug routes
-    Route::get('/debug-session', function() {
+    Route::get('/debug-session', function () {
         return response()->json([
             'session_id' => session()->getId(),
             'session_started' => session()->isStarted(),
@@ -31,7 +32,7 @@ Route::middleware(['web'])->group(function () {
         ]);
     })->name('debug.session');
 
-    Route::get('/debug-auth', function() {
+    Route::get('/debug-auth', function () {
         return response()->json([
             'custom_auth_status' => \App\Facades\CustomAuth::getAuthStatus(),
             'standard_auth' => [
@@ -42,9 +43,13 @@ Route::middleware(['web'])->group(function () {
         ]);
     })->name('debug.auth');
 
+    // IAM Client Package Test Routes
+    Route::get('/iam-test', [IamTestController::class, 'index'])->name('iam.test');
+    Route::get('/iam-test/login', [IamTestController::class, 'testLogin'])->name('iam.test.login');
+
     // Authenticated routes
     Route::middleware('sso.auth')->group(function () {
         Route::post('/logout', [SsoController::class, 'logout'])->name('logout');
-        Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
+        Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
     });
 });

@@ -103,8 +103,6 @@
                 <h3>SSO Information</h3>
                 <p><strong>Subject:</strong> {{ session('iam.sub') }}</p>
                 <p><strong>Application:</strong> {{ session('iam.app') }}</p>
-                <p><strong>Roles:</strong> {{ implode(', ', session('iam.roles', [])) ?: 'None' }}</p>
-                <p><strong>Permissions:</strong> {{ implode(', ', session('iam.perms', [])) ?: 'None' }}</p>
             </div>
             @endif
 

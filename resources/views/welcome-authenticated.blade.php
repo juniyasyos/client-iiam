@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,17 +17,28 @@
             align-items: center;
             justify-content: center;
         }
+
         .container {
             background: white;
             border-radius: 12px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 600px;
             width: 100%;
         }
-        h1 { color: #333; margin-bottom: 20px; }
-        .welcome { color: #666; line-height: 1.6; margin-bottom: 30px; }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .welcome {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
         .user-info {
             background: #f8f9fa;
             border-radius: 6px;
@@ -34,6 +46,7 @@
             margin-bottom: 20px;
             text-align: left;
         }
+
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -47,10 +60,23 @@
             cursor: pointer;
             font-size: 14px;
         }
-        .btn-logout { background: #dc3545; }
-        .btn-logout:hover { background: #c82333; }
-        .btn-dashboard { background: #28a745; }
-        .btn-dashboard:hover { background: #218838; }
+
+        .btn-logout {
+            background: #dc3545;
+        }
+
+        .btn-logout:hover {
+            background: #c82333;
+        }
+
+        .btn-dashboard {
+            background: #28a745;
+        }
+
+        .btn-dashboard:hover {
+            background: #218838;
+        }
+
         .status {
             margin-top: 20px;
             padding: 15px;
@@ -61,6 +87,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Welcome Back!</h1>
@@ -71,11 +98,11 @@
             <p><strong>Name:</strong> {{ Auth::user()->name }}</p>
             <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
             <p><strong>User ID:</strong> {{ Auth::user()->id }}</p>
-            @if(session('iam'))
+            @if (session('iam'))
+                <p>{{ Auth::user() }}</p>
                 <h4>SSO Data:</h4>
                 <p><strong>Subject:</strong> {{ session('iam.sub') }}</p>
                 <p><strong>App:</strong> {{ session('iam.app') }}</p>
-                <p><strong>Roles:</strong> {{ implode(', ', session('iam.roles', [])) }}</p>
             @endif
         </div>
 
@@ -101,4 +128,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -7,6 +7,7 @@
 /bootstrap/ssr
 /public/build
 /public/hot
+/packages
 
 # Environment & Config
 .env
